@@ -31,7 +31,21 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     documented when they are backed by proven use cases.
   </p>
 
-  <h2>Start here</h2>
+  <h2>Start with your role</h2>
+  <div class="doc-card-grid">
+    <a href={withBase("/docs/for-creators/")}>
+      <span>Creator path</span>
+      <h3>I build extensions</h3>
+      <p>See how publishing, registries, connectors and updates fit into your release workflow.</p>
+    </a>
+    <a href={withBase("/docs/for-users/")}>
+      <span>User path</span>
+      <h3>I use extensions</h3>
+      <p>See how to choose sources, install extensions and understand the trust boundary.</p>
+    </a>
+  </div>
+
+  <h2>Understand the technical model</h2>
   <div class="doc-card-grid">
     <a href={withBase("/docs/concepts/")}>
       <span>01</span>
