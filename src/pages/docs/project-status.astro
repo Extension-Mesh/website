@@ -1,5 +1,7 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 ---
 
 <DocsLayout
@@ -8,41 +10,179 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 >
   <div class="status-block">
     <span>Current phase</span>
-    <strong>Early implementation</strong>
+    <strong>Working vertical slice</strong>
     <p>
-      The first connector and the surrounding project foundations are being
-      developed in public.
+      Core buyer, seller and paid-distribution flows exist in source and are
+      exercised in local end-to-end environments. The project is not yet a
+      stable public release.
     </p>
   </div>
 
-  <h2>Available today</h2>
-  <ul class="check-list">
-    <li>Public project organization and governance.</li>
-    <li>Canonical visual identity and reusable brand assets.</li>
-    <li>A first connector repository targeting Shopware.</li>
-    <li>Initial project-wide concepts and documentation.</li>
-  </ul>
+  <div class="status-facts">
+    <div>
+      <span>Current target</span>
+      <strong>Shopware 6.7</strong>
+    </div>
+    <div>
+      <span>Maturity</span>
+      <strong>Pre-stable</strong>
+    </div>
+    <div>
+      <span>Status checked</span>
+      <strong>29 July 2026</strong>
+    </div>
+  </div>
 
-  <h2>Current priorities</h2>
+  <h2>Implemented in the current connector</h2>
+  <p>
+    “Implemented” means the capability exists in the current development
+    source. It does not yet mean that the project promises a stable interface,
+    production support or compatibility beyond the stated target.
+  </p>
+
+  <div class="capability-grid">
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Independent registry sources</h3>
+      <p>
+        Persistent sources, GitHub repository URL discovery, strict registry
+        parsing and compatible-release selection.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Buyer installation flow</h3>
+      <p>
+        Registry extensions are presented in the existing extension screen and
+        handed to the platform-provided upload, install and update lifecycle.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Seller publication</h3>
+      <p>
+        Valid plugin ZIPs attached to digital products can be inspected,
+        published and updated without a separate packaging service.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Paid account access</h3>
+      <p>
+        Customer- and sales-channel-scoped tokens derive access from product,
+        order, download and payment state. Full revocation is rechecked for
+        artifact requests.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Repository onboarding</h3>
+      <p>
+        Public and private GitHub repositories can create a draft product or
+        link releases to an existing product, followed by scheduled
+        synchronization.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Download safety</h3>
+      <p>
+        Production HTTPS rules, SSRF-aware requests, redirect revalidation,
+        size limits, SHA-256 verification and ZIP preflight checks.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Credential handling</h3>
+      <p>
+        Buyer and private-repository credentials are encrypted at rest,
+        fingerprinted in Administration and restricted to their configured
+        origin.
+      </p>
+    </section>
+    <section>
+      <span class="status-tag implemented">Implemented</span>
+      <h3>Local end-to-end verification</h3>
+      <p>
+        Separate buyer and seller environments exercise anonymous registries,
+        purchase, update, refund, token rotation and repository synchronization.
+      </p>
+    </section>
+  </div>
+
+  <h2>Being validated before a stable release</h2>
+  <div class="validation-list">
+    <section>
+      <span>01</span>
+      <div>
+        <h3>Compatibility across supported 6.7 minor releases</h3>
+        <p>
+          The Administration adapter touches private upstream components and
+          must be retested for every supported minor line.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>02</span>
+      <div>
+        <h3>Production installation and recovery behavior</h3>
+        <p>
+          Setup, upgrade, failed download, invalid package, credential rotation
+          and seller outage behavior need release-grade operational guidance.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>03</span>
+      <div>
+        <h3>Seller and administrator user experience</h3>
+        <p>
+          Repository onboarding, publication diagnostics, access delivery and
+          lifecycle errors need testing outside the development environment.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>04</span>
+      <div>
+        <h3>Versioned build and release gates</h3>
+        <p>
+          The canonical repository, automated checks, reproducible packages,
+          release notes and upgrade promises must align before a stable tag.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <h2>Immediate project milestones</h2>
   <ol>
-    <li>Validate the first complete registry-to-system workflow.</li>
-    <li>Document installation, configuration and operational behavior.</li>
-    <li>Establish reliable testing, versioning and release automation.</li>
-    <li>Extract shared conventions only where the implementation proves them.</li>
+    <li>Move the connector into its canonical ExtensionMesh repository.</li>
+    <li>Establish CI and a tested compatibility matrix for supported versions.</li>
+    <li>Publish administrator, seller and extension-author setup guides.</li>
+    <li>Ship a clearly labelled pre-release and collect real installation feedback.</li>
+    <li>Extract shared registry conventions from the proven implementation.</li>
   </ol>
 
-  <h2>Deliberate non-goals</h2>
+  <h2>Deliberately later—or not promised</h2>
   <ul>
-    <li>Claiming compatibility with systems that have not been implemented.</li>
-    <li>Designing a universal protocol before requirements are demonstrated.</li>
-    <li>Granting project control based on commercial use or sponsorship.</li>
-    <li>Hiding system-specific behavior behind vague project language.</li>
+    <li>Support for systems without a concrete connector and maintainer.</li>
+    <li>A universal cross-system protocol designed ahead of implementation.</li>
+    <li>One central directory or mandatory ExtensionMesh service.</li>
+    <li>Unattended extension installation or background updates.</li>
+    <li>Per-domain, seat, device or quantity-based licence enforcement.</li>
+    <li>Additional repository providers before a real use case requires them.</li>
   </ul>
 
-  <h2>Stability</h2>
-  <p>
-    Interfaces, terminology and repository structure may change. Stable
-    compatibility promises should be made by versioned implementations, not
-    inferred from this early project documentation.
-  </p>
+  <div class="notice">
+    <strong>Evidence and current source</strong>
+    <p>
+      This status is based on the
+      <a href="https://github.com/aggrosoft/shopware-alt-store">current development repository</a>.
+      The canonical connector home will be
+      <a href="https://github.com/Extension-Mesh/shopware">Extension-Mesh/shopware</a>
+      after the planned transfer. See the
+      <a href={withBase("/docs/connectors/")}>connector model</a> for the
+      project-wide boundary.
+    </p>
+  </div>
 </DocsLayout>
