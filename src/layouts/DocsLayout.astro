@@ -1,0 +1,63 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  section?: string;
+}
+
+const { title, description, section = "Documentation" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const currentPath = Astro.url.pathname;
+
+const navigation = [
+  { href: withBase("/docs/"), label: "Overview", match: "/docs/" },
+  { href: withBase("/docs/concepts/"), label: "Core concepts", match: "/docs/concepts/" },
+  { href: withBase("/docs/registries/"), label: "Registries", match: "/docs/registries/" },
+  { href: withBase("/docs/connectors/"), label: "Connectors", match: "/docs/connectors/" },
+  { href: withBase("/docs/project-status/"), label: "Project status", match: "/docs/project-status/" },
+];
+---
+
+<BaseLayout title={`${title} — ExtensionMesh`} description={description} bodyClass="docs-page">
+  <section class="docs-hero">
+    <div class="shell">
+      <p class="eyebrow">{section}</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </div>
+  </section>
+
+  <div class="shell docs-shell">
+    <aside class="docs-sidebar" aria-label="Documentation navigation">
+      <p>Documentation</p>
+      <nav>
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={
+              item.match === "/docs/"
+                ? currentPath === item.href || currentPath === item.href.slice(0, -1)
+                  ? "page"
+                  : undefined
+                : currentPath.includes(item.match)
+                  ? "page"
+                  : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="sidebar-note">
+        <span>Early development</span>
+        <p>Interfaces and terminology may change as the first implementation is validated.</p>
+      </div>
+    </aside>
+    <article class="docs-content prose">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>
