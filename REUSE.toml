@@ -1,0 +1,29 @@
+version = 1
+
+[[annotations]]
+path = [
+  ".github/**",
+  ".gitignore",
+  "astro.config.mjs",
+  "package.json",
+  "package-lock.json",
+  "public/**",
+  "src/components/**",
+  "src/layouts/**",
+  "src/styles/**",
+  "tsconfig.json",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 ExtensionMesh contributors"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = [
+  "LICENSE.md",
+  "README.md",
+  "REUSE.toml",
+  "src/pages/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 ExtensionMesh contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
