@@ -1,0 +1,109 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<DocsLayout
+  title="I use extensions"
+  description="A practical introduction for people who want to discover, install and update extensions from sources they trust."
+  section="For extension users"
+>
+  <div class="notice">
+    <strong>The short version</strong>
+    <p>
+      A connector lets your software use independent extension registries. You
+      choose the sources you trust; the connector handles how their extensions
+      appear, install and update in your system.
+    </p>
+  </div>
+
+  <h2>Why this exists</h2>
+  <p>
+    Independently distributed extensions often arrive as downloads, setup
+    instructions and update notices spread across different websites. That can
+    work, but it makes installation and maintenance unnecessarily manual.
+  </p>
+  <p>
+    ExtensionMesh aims to bring those sources into a supported system through a
+    visible connector. You keep the choice of source while gaining a more
+    consistent workflow.
+  </p>
+
+  <h2>Your path through ExtensionMesh</h2>
+  <div class="concept-list">
+    <section>
+      <span>01 · Connect</span>
+      <div>
+        <h3>Install the connector for your system</h3>
+        <p>
+          The connector provides the system-specific integration required to
+          use compatible registries.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>02 · Choose</span>
+      <div>
+        <h3>Add a registry you trust</h3>
+        <p>
+          A registry is an independent extension source. Its operator—not
+          ExtensionMesh—decides what it publishes and how access works.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>03 · Install</span>
+      <div>
+        <h3>Discover compatible extensions</h3>
+        <p>
+          The connector presents the registry information using the mechanisms
+          available in your software and handles the installation boundary.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>04 · Maintain</span>
+      <div>
+        <h3>Receive compatible updates</h3>
+        <p>
+          When the registry publishes a new compatible release, the connector
+          can make it available through the same system workflow.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <h2>Trust remains your decision</h2>
+  <p>
+    Open distribution does not mean that every source or extension is
+    automatically reviewed. A registry remains responsible for what it
+    publishes, and system administrators remain responsible for choosing
+    sources and evaluating the code they install.
+  </p>
+  <ul class="check-list">
+    <li>Only add registries whose operator and policies you understand.</li>
+    <li>Review publisher, version, compatibility and access information.</li>
+    <li>Treat extensions as software that receives access to your system.</li>
+    <li>Follow security guidance from the registry and extension publisher.</li>
+  </ul>
+
+  <h2>What ExtensionMesh is not</h2>
+  <p>
+    ExtensionMesh is not one required catalogue, a certification authority or
+    a promise that every extension works in every system. Connectors explicitly
+    define which systems and registry behavior they support.
+  </p>
+
+  <h2>What works today</h2>
+  <p>
+    The first connector targets Shopware and is still in early development.
+    Concrete installation and configuration instructions will live with that
+    connector as its user-facing workflow stabilizes.
+  </p>
+  <p>
+    Continue with <a href={withBase("/docs/connectors/")}>the connector model</a>,
+    or check the
+    <a href="https://github.com/Extension-Mesh/shopware">current implementation</a>.
+  </p>
+</DocsLayout>
