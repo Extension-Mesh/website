@@ -101,9 +101,29 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     Concrete installation and configuration instructions will live with that
     connector as its user-facing workflow stabilizes.
   </p>
+
+  <h2>What you can validate today</h2>
+  <ul class="check-list">
+    <li>Configure persistent registry sources in a Shopware 6.7 test installation.</li>
+    <li>Use a compatible registry URL or GitHub repository URL as a source.</li>
+    <li>Discover compatible releases and hand installation or updates to the native plugin lifecycle.</li>
+    <li>Use credentials for private or paid sources without exposing them through the Administration API.</li>
+  </ul>
+
+  <div class="notice">
+    <strong>Use a test installation</strong>
+    <p>
+      The current implementation is pre-stable. Evaluate it in an isolated
+      environment before considering production use, and review the source,
+      registry operator and extension packages as separate trust decisions.
+    </p>
+  </div>
+
   <p>
     Continue with <a href={withBase("/docs/connectors/")}>the connector model</a>,
     or check the
-    <a href="https://github.com/Extension-Mesh/shopware">current implementation</a>.
+    <a href="https://github.com/aggrosoft/shopware-alt-store">current implementation</a>.
+    Its planned permanent home is
+    <a href="https://github.com/Extension-Mesh/shopware">Extension-Mesh/shopware</a>.
   </p>
 </DocsLayout>
