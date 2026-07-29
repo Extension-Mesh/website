@@ -1,0 +1,48 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout
+  title="Project status"
+  description="What exists today, what is being validated and what ExtensionMesh deliberately does not promise yet."
+>
+  <div class="status-block">
+    <span>Current phase</span>
+    <strong>Early implementation</strong>
+    <p>
+      The first connector and the surrounding project foundations are being
+      developed in public.
+    </p>
+  </div>
+
+  <h2>Available today</h2>
+  <ul class="check-list">
+    <li>Public project organization and governance.</li>
+    <li>Canonical visual identity and reusable brand assets.</li>
+    <li>A first connector repository targeting Shopware.</li>
+    <li>Initial project-wide concepts and documentation.</li>
+  </ul>
+
+  <h2>Current priorities</h2>
+  <ol>
+    <li>Validate the first complete registry-to-system workflow.</li>
+    <li>Document installation, configuration and operational behavior.</li>
+    <li>Establish reliable testing, versioning and release automation.</li>
+    <li>Extract shared conventions only where the implementation proves them.</li>
+  </ol>
+
+  <h2>Deliberate non-goals</h2>
+  <ul>
+    <li>Claiming compatibility with systems that have not been implemented.</li>
+    <li>Designing a universal protocol before requirements are demonstrated.</li>
+    <li>Granting project control based on commercial use or sponsorship.</li>
+    <li>Hiding system-specific behavior behind vague project language.</li>
+  </ul>
+
+  <h2>Stability</h2>
+  <p>
+    Interfaces, terminology and repository structure may change. Stable
+    compatibility promises should be made by versioned implementations, not
+    inferred from this early project documentation.
+  </p>
+</DocsLayout>
