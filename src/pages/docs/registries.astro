@@ -1,0 +1,46 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout
+  title="Registries"
+  description="Independent sources that publish extension information and releases."
+>
+  <h2>Responsibility</h2>
+  <p>
+    A registry is responsible for the extension information it publishes and
+    the infrastructure used to distribute releases. ExtensionMesh does not
+    require all registries to be operated by one organization.
+  </p>
+
+  <h2>What independence means</h2>
+  <ul>
+    <li>The operator controls the registry infrastructure and availability.</li>
+    <li>The operator decides which extensions are published.</li>
+    <li>Authentication and access rules may be specific to that registry.</li>
+    <li>A connector can consume more than one compatible registry source.</li>
+  </ul>
+
+  <h2>Current documentation scope</h2>
+  <p>
+    The project does not yet publish a stable universal registry
+    specification. The first implementation is being used to identify which
+    metadata, release and authentication behaviors are genuinely shared.
+  </p>
+
+  <div class="notice">
+    <strong>Implementation-led</strong>
+    <p>
+      If you operate or plan an independent registry, concrete requirements and
+      edge cases are more useful now than speculative completeness.
+    </p>
+  </div>
+
+  <h2>Useful contribution topics</h2>
+  <ul>
+    <li>Real publication and release workflows.</li>
+    <li>Authentication and entitlement requirements.</li>
+    <li>Version compatibility and dependency metadata.</li>
+    <li>Failure behavior, availability and caching.</li>
+  </ul>
+</DocsLayout>
