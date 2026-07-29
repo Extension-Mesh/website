@@ -1,0 +1,29 @@
+---
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <a class="footer-brand" href={withBase("/")}>ExtensionMesh</a>
+      <p>Open extension distribution.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <span>Explore</span>
+        <a href={withBase("/docs/")}>Documentation</a>
+        <a href={withBase("/project/")}>Project</a>
+      </div>
+      <div>
+        <span>Contribute</span>
+        <a href="https://github.com/Extension-Mesh">GitHub organization</a>
+        <a href="https://github.com/Extension-Mesh/.github/blob/main/CONTRIBUTING.md">Contribution guide</a>
+      </div>
+    </div>
+  </div>
+  <div class="shell footer-meta">
+    <span>Built in the open by ExtensionMesh contributors.</span>
+    <a href="https://github.com/Extension-Mesh/website">Website source</a>
+  </div>
+</footer>
