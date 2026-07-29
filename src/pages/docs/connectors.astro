@@ -1,0 +1,46 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout
+  title="Connectors"
+  description="Integrations that translate independent registry data into the mechanisms required by a supported system."
+>
+  <h2>Role of a connector</h2>
+  <p>
+    A connector owns system-specific behavior. It makes registry information
+    practical inside the target environment without requiring the registry
+    itself to implement that environment's internal APIs or lifecycle.
+  </p>
+
+  <h2>Typical responsibilities</h2>
+  <ul>
+    <li>Discovering configured registry sources.</li>
+    <li>Translating extension metadata into system-specific representations.</li>
+    <li>Integrating download, installation and update workflows.</li>
+    <li>Handling authentication and errors at the system boundary.</li>
+    <li>Documenting compatibility with supported system versions.</li>
+  </ul>
+
+  <h2>First implementation</h2>
+  <p>
+    The current connector targets Shopware. Its implementation and concrete
+    setup documentation live in the
+    <a href="https://github.com/Extension-Mesh/shopware">Extension-Mesh/shopware</a>
+    repository.
+  </p>
+
+  <p>
+    Moving system-specific concerns into that repository keeps project-wide
+    documentation honest: the current architecture may inform future
+    connectors, but it is not presented as proof that every system has the same
+    requirements.
+  </p>
+
+  <h2>Future connectors</h2>
+  <p>
+    Additional connectors are possible when a concrete maintainer and use case
+    exist. A proposed connector should document its target system, lifecycle,
+    registry requirements and the differences from existing implementations.
+  </p>
+</DocsLayout>
