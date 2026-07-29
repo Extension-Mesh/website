@@ -1,0 +1,107 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<DocsLayout
+  title="I build extensions"
+  description="A practical introduction for developers who want to publish extensions through infrastructure they run or choose."
+  section="For extension creators"
+>
+  <div class="notice">
+    <strong>The short version</strong>
+    <p>
+      You publish an extension through an independent registry. A connector
+      makes that registry usable inside a supported system. Your registry stays
+      responsible for releases, packages and access rules.
+    </p>
+  </div>
+
+  <h2>Why this exists</h2>
+  <p>
+    Building an extension is only part of shipping it. Independent
+    distribution also needs release metadata, package delivery, compatibility
+    information, installation and updates. Rebuilding that path for every
+    extension and every target system wastes effort.
+  </p>
+  <p>
+    ExtensionMesh separates the source of an extension from the integration
+    with a particular system. That creates a reusable path without requiring
+    one mandatory catalogue or operator.
+  </p>
+
+  <h2>Your path through ExtensionMesh</h2>
+  <div class="concept-list">
+    <section>
+      <span>01 · Build</span>
+      <div>
+        <h3>Create and package your extension</h3>
+        <p>
+          You keep using the tools, release process and package format required
+          by the system you support.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>02 · Publish</span>
+      <div>
+        <h3>Release through a registry</h3>
+        <p>
+          The registry publishes the extension metadata, compatible versions
+          and package location needed by a connector.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>03 · Connect</span>
+      <div>
+        <h3>A system-specific connector reads the source</h3>
+        <p>
+          The connector translates registry information into the discovery,
+          installation and update mechanisms of the supported system.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>04 · Update</span>
+      <div>
+        <h3>Future releases use the same path</h3>
+        <p>
+          Publish another compatible release and the connector can make that
+          update available without a separate manual delivery workflow.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <h2>What remains under your control</h2>
+  <ul class="check-list">
+    <li>Where packages and release metadata are hosted.</li>
+    <li>Which extensions and versions your registry publishes.</li>
+    <li>Whether packages are public, private, free or commercially licensed.</li>
+    <li>Authentication, entitlement and availability rules of your registry.</li>
+    <li>The systems and versions your extension supports.</li>
+  </ul>
+
+  <h2>What ExtensionMesh provides</h2>
+  <p>
+    ExtensionMesh defines the roles and integration boundaries needed to
+    connect independent sources with supported systems. It is not intended to
+    host every package, operate every registry or make publication decisions
+    for extension creators.
+  </p>
+
+  <h2>What works today</h2>
+  <p>
+    The project is validating this model through its first connector, which
+    targets Shopware. The shared registry conventions are still being extracted
+    from that implementation, so a stable system-independent publication
+    specification is not available yet.
+  </p>
+  <p>
+    Continue with <a href={withBase("/docs/registries/")}>the registry model</a>,
+    or follow implementation progress in the
+    <a href="https://github.com/Extension-Mesh/shopware">connector repository</a>.
+  </p>
+</DocsLayout>
