@@ -1,0 +1,18 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "src/**/*", "astro.config.mjs"],
+  "exclude": [
+    "app",
+    "build",
+    "db",
+    "dist",
+    "examples",
+    "node_modules",
+    "scripts",
+    "tests",
+    "worker",
+    "drizzle.config.ts",
+    "next.config.ts",
+    "vite.config.ts"
+  ]
+}
