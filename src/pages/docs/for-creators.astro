@@ -99,9 +99,44 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     from that implementation, so a stable system-independent publication
     specification is not available yet.
   </p>
+
+  <h2>What you can validate today</h2>
+  <ul class="check-list">
+    <li>
+      Publish a conventional plugin repository through a release workflow that
+      produces a validated ZIP, checksum and registry metadata.
+    </li>
+    <li>
+      Use a seller-operated installation to publish digital-product ZIPs and
+      provide entitled customers with registry access.
+    </li>
+    <li>
+      Connect a public or private GitHub repository and synchronize stable
+      release assets into a seller installation.
+    </li>
+    <li>
+      Run the separate buyer and seller environments locally to exercise the
+      complete publication, purchase, update and revocation flow.
+    </li>
+  </ul>
+
+  <div class="notice">
+    <strong>Pre-stable implementation</strong>
+    <p>
+      These workflows are available for evaluation and contribution. Interfaces,
+      packaging rules and setup steps may still change before the first stable
+      release.
+    </p>
+  </div>
+
   <p>
     Continue with <a href={withBase("/docs/registries/")}>the registry model</a>,
+    read the
+    <a href="https://github.com/aggrosoft/shopware-alt-store/blob/main/docs/github-publishing.md">current GitHub publishing notes</a>,
     or follow implementation progress in the
-    <a href="https://github.com/Extension-Mesh/shopware">connector repository</a>.
+    <a href="https://github.com/aggrosoft/shopware-alt-store">development repository</a>.
+    The code will move to
+    <a href="https://github.com/Extension-Mesh/shopware">Extension-Mesh/shopware</a>;
+    until then, the development repository is the source of truth.
   </p>
 </DocsLayout>
