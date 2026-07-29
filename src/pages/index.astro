@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ModuleDiagram from "../components/ModuleDiagram.astro";
+
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow on-dark"><span></span> Open project · Early development</p>
+        <h1>Open extension <em>distribution.</em></h1>
+        <p class="hero-lead">
+          ExtensionMesh is an open project for distributing software extensions
+          through independent registries. The first implementation connects
+          those registries with Shopware.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href={withBase("/docs/")}>
+            Read the documentation <span aria-hidden="true">→</span>
+          </a>
+          <a class="button secondary" href="https://github.com/Extension-Mesh">
+            Explore on GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <ModuleDiagram />
+      </div>
+    </div>
+  </section>
+
+  <section class="principles section">
+    <div class="shell">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Project model</p>
+          <h2>Distribution without a single required source.</h2>
+        </div>
+        <p>
+          ExtensionMesh separates extension sources from system integration.
+          Registries remain independent; connectors make them usable in a
+          specific environment.
+        </p>
+      </div>
+
+      <div class="principle-grid">
+        <article>
+          <span class="card-index">01</span>
+          <div class="card-mark"><i></i><i></i><i></i></div>
+          <h3>Independent registries</h3>
+          <p>
+            Registry operators control their infrastructure, publication
+            process and available extensions.
+          </p>
+        </article>
+        <article>
+          <span class="card-index">02</span>
+          <div class="card-mark connector-mark"><i></i><i></i><i></i></div>
+          <h3>Explicit connectors</h3>
+          <p>
+            System-specific behavior stays in a visible integration boundary
+            instead of being hidden behind broad claims.
+          </p>
+        </article>
+        <article>
+          <span class="card-index">03</span>
+          <div class="card-mark open-mark"><i></i><i></i><i></i></div>
+          <h3>Open development</h3>
+          <p>
+            Source, documentation and technical decisions are intended to be
+            accessible and shaped by real implementations.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow section">
+    <div class="shell flow-grid">
+      <div class="flow-copy">
+        <p class="eyebrow">How it fits together</p>
+        <h2>Clear roles.<br />Practical boundaries.</h2>
+        <p>
+          ExtensionMesh is not presented as a finished universal standard. The
+          current model grows from a working connector and the requirements of
+          independent registries.
+        </p>
+        <a class="text-link" href={withBase("/docs/concepts/")}>
+          Understand the concepts <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <ol class="flow-list">
+        <li>
+          <span>01</span>
+          <div>
+            <h3>A registry publishes extension information.</h3>
+            <p>It owns its catalogue, releases and distribution infrastructure.</p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <h3>A connector translates system requirements.</h3>
+            <p>Discovery, installation and updates are integrated where the system needs them.</p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <h3>The implementation shapes shared conventions.</h3>
+            <p>Common interfaces are extracted only when real use cases demonstrate them.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="audience section">
+    <div class="shell">
+      <div class="section-heading">
+        <p class="eyebrow">Participate</p>
+        <h2>Built for people who distribute and integrate extensions.</h2>
+      </div>
+      <div class="audience-grid">
+        <a href={withBase("/docs/registries/")}>
+          <span>Registry operators</span>
+          <p>Understand the role of an independent source and the current project boundaries.</p>
+          <i aria-hidden="true">→</i>
+        </a>
+        <a href={withBase("/docs/connectors/")}>
+          <span>Connector maintainers</span>
+          <p>See where system-specific integration belongs and how the first implementation is organized.</p>
+          <i aria-hidden="true">→</i>
+        </a>
+        <a href={withBase("/project/")}>
+          <span>Contributors</span>
+          <p>Join an open, maintainer-led project with public governance and practical scope.</p>
+          <i aria-hidden="true">→</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="shell cta-inner">
+      <div>
+        <p class="eyebrow on-dark">Start with the current model</p>
+        <h2>Read what exists.<br />Help shape what comes next.</h2>
+      </div>
+      <div>
+        <p>
+          The project is early enough for implementation experience to matter.
+          Begin with the concepts and current project status.
+        </p>
+        <a class="button primary" href={withBase("/docs/")}>
+          Open documentation <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
