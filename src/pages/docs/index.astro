@@ -1,0 +1,79 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<DocsLayout
+  title="Documentation"
+  description="A practical introduction to the current ExtensionMesh model, its components and its boundaries."
+>
+  <div class="notice">
+    <strong>Current status</strong>
+    <p>
+      ExtensionMesh is in early development. This documentation describes the
+      project direction and the first implementation without claiming a stable,
+      system-independent specification.
+    </p>
+  </div>
+
+  <h2>What ExtensionMesh is</h2>
+  <p>
+    ExtensionMesh is an open project for practical extension distribution
+    through independent registries. A registry provides extension information
+    and releases. A connector integrates that source with a specific supported
+    system.
+  </p>
+
+  <p>
+    The first implementation connects independent registries with Shopware.
+    Requirements discovered there guide the project. Common interfaces will be
+    documented when they are backed by proven use cases.
+  </p>
+
+  <h2>Start here</h2>
+  <div class="doc-card-grid">
+    <a href={withBase("/docs/concepts/")}>
+      <span>01</span>
+      <h3>Core concepts</h3>
+      <p>Learn the roles of registries, connectors, extensions and supported systems.</p>
+    </a>
+    <a href={withBase("/docs/registries/")}>
+      <span>02</span>
+      <h3>Registries</h3>
+      <p>Understand the responsibility and independence of an extension source.</p>
+    </a>
+    <a href={withBase("/docs/connectors/")}>
+      <span>03</span>
+      <h3>Connectors</h3>
+      <p>See how system-specific discovery, installation and updates are integrated.</p>
+    </a>
+    <a href={withBase("/docs/project-status/")}>
+      <span>04</span>
+      <h3>Project status</h3>
+      <p>Review what exists today, current priorities and deliberate non-goals.</p>
+    </a>
+  </div>
+
+  <h2>Documentation boundaries</h2>
+  <p>
+    Project-wide documentation explains roles, principles and shared direction.
+    Concrete installation, configuration and API details belong to the
+    repository that implements them.
+  </p>
+
+  <ul>
+    <li>
+      Use the <a href="https://github.com/Extension-Mesh/shopware">connector repository</a>
+      for implementation-specific setup and development.
+    </li>
+    <li>
+      Use the <a href="https://github.com/Extension-Mesh/.github">organization repository</a>
+      for governance, contribution and support policies.
+    </li>
+    <li>
+      Use the <a href="https://github.com/Extension-Mesh/brand">brand repository</a>
+      for visual assets and identity guidance.
+    </li>
+  </ul>
+</DocsLayout>
