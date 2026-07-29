@@ -11,23 +11,130 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     <div class="shell hero-grid">
       <div class="hero-copy">
         <p class="eyebrow on-dark"><span></span> Open project · Early development</p>
-        <h1>Open extension <em>distribution.</em></h1>
+        <h1>Publish extensions. <em>Use them where they connect.</em></h1>
         <p class="hero-lead">
-          ExtensionMesh is an open project for distributing software extensions
-          through independent registries. The first implementation connects
-          those registries with Shopware.
+          ExtensionMesh connects independent extension sources with the
+          software that installs them. Creators keep control of their releases.
+          Users get a practical way to discover, install and update them.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href={withBase("/docs/")}>
-            Read the documentation <span aria-hidden="true">→</span>
+          <a class="button primary" href="#for-creators">
+            I build extensions <span aria-hidden="true">↓</span>
           </a>
-          <a class="button secondary" href="https://github.com/Extension-Mesh">
-            Explore on GitHub <span aria-hidden="true">↗</span>
+          <a class="button secondary" href="#for-users">
+            I use extensions <span aria-hidden="true">↓</span>
           </a>
         </div>
       </div>
       <div class="hero-visual">
         <ModuleDiagram />
+      </div>
+    </div>
+  </section>
+
+  <section class="overview section">
+    <div class="shell">
+      <div class="overview-intro">
+        <p class="eyebrow">The 1,000-foot view</p>
+        <h2>
+          A shared, open distribution layer between extension creators and
+          users.
+        </h2>
+        <p class="overview-lead">
+          Plugins, add-ons and modules are all extensions. Publishing them
+          independently often means building downloads, release metadata,
+          installation and updates again for every system. ExtensionMesh aims
+          to turn that repeated work into open, reusable infrastructure.
+        </p>
+      </div>
+
+      <div class="plain-flow" aria-label="ExtensionMesh in three steps">
+        <div class="plain-flow-node">
+          <span>01 · Publish</span>
+          <strong>Extension creators</strong>
+          <p>Release through an independent registry.</p>
+        </div>
+        <div class="plain-flow-link" aria-hidden="true">
+          <i></i><span>ExtensionMesh</span><i></i>
+        </div>
+        <div class="plain-flow-node">
+          <span>02 · Connect</span>
+          <strong>Supported software</strong>
+          <p>A connector translates what the system needs.</p>
+        </div>
+        <div class="plain-flow-link" aria-hidden="true">
+          <i></i><span>Install &amp; update</span><i></i>
+        </div>
+        <div class="plain-flow-node">
+          <span>03 · Use</span>
+          <strong>Extension users</strong>
+          <p>Choose trusted sources and use their extensions.</p>
+        </div>
+      </div>
+
+      <p class="overview-boundary">
+        ExtensionMesh is the connection layer—not a single catalogue, vendor or
+        required source. The first implementation connects independent
+        registries with Shopware; broader conventions will grow from working
+        integrations.
+      </p>
+    </div>
+  </section>
+
+  <section class="paths section">
+    <div class="shell">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Choose your perspective</p>
+          <h2>What does ExtensionMesh do for me?</h2>
+        </div>
+        <p>
+          The same open infrastructure serves two very different jobs. Start
+          with the side that matches yours.
+        </p>
+      </div>
+
+      <div class="path-grid">
+        <article id="for-creators" class="path-card creator-path">
+          <div class="path-label">
+            <span>For creators</span>
+            <i aria-hidden="true">01</i>
+          </div>
+          <h3>I build extensions.</h3>
+          <p class="path-summary">
+            Publish releases through infrastructure you run or choose, while
+            keeping packages, metadata and release decisions under your
+            control.
+          </p>
+          <ul>
+            <li>Use an independent registry as your extension source.</li>
+            <li>Avoid rebuilding the full distribution workflow for every release.</li>
+            <li>Reach supported systems through explicit, open connectors.</li>
+          </ul>
+          <a class="text-link" href={withBase("/docs/registries/")}>
+            See how publishing fits in <span aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article id="for-users" class="path-card user-path">
+          <div class="path-label">
+            <span>For users</span>
+            <i aria-hidden="true">02</i>
+          </div>
+          <h3>I use extensions.</h3>
+          <p class="path-summary">
+            Connect sources you trust, find their extensions from the software
+            you already use, and keep installed releases up to date.
+          </p>
+          <ul>
+            <li>Choose which independent registries your system should trust.</li>
+            <li>Discover and install available extensions through a connector.</li>
+            <li>Receive compatible releases without tracking manual downloads.</li>
+          </ul>
+          <a class="text-link" href={withBase("/docs/connectors/")}>
+            See how systems connect <span aria-hidden="true">→</span>
+          </a>
+        </article>
       </div>
     </div>
   </section>
@@ -78,7 +185,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     </div>
   </section>
 
-  <section class="flow section">
+  <section class="flow section" id="how-it-works">
     <div class="shell flow-grid">
       <div class="flow-copy">
         <p class="eyebrow">How it fits together</p>
@@ -115,32 +222,6 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           </div>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <section class="audience section">
-    <div class="shell">
-      <div class="section-heading">
-        <p class="eyebrow">Participate</p>
-        <h2>Built for people who distribute and integrate extensions.</h2>
-      </div>
-      <div class="audience-grid">
-        <a href={withBase("/docs/registries/")}>
-          <span>Registry operators</span>
-          <p>Understand the role of an independent source and the current project boundaries.</p>
-          <i aria-hidden="true">→</i>
-        </a>
-        <a href={withBase("/docs/connectors/")}>
-          <span>Connector maintainers</span>
-          <p>See where system-specific integration belongs and how the first implementation is organized.</p>
-          <i aria-hidden="true">→</i>
-        </a>
-        <a href={withBase("/project/")}>
-          <span>Contributors</span>
-          <p>Join an open, maintainer-led project with public governance and practical scope.</p>
-          <i aria-hidden="true">→</i>
-        </a>
-      </div>
     </div>
   </section>
 
