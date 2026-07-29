@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
-const site = process.env.SITE_URL ?? "https://extension-mesh.github.io";
-const base = process.env.SITE_BASE ?? "/website";
+const site = process.env.SITE_URL ?? "https://www.extension-mesh.dev";
+const base = process.env.SITE_BASE ?? "/";
 
 export default defineConfig({
   site,
