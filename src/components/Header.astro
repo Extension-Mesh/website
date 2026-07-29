@@ -1,0 +1,54 @@
+---
+const base = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+
+const items = [
+  { href: withBase("/docs/"), label: "Documentation", match: "/docs/" },
+  { href: withBase("/project/"), label: "Project", match: "/project/" },
+];
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href={withBase("/")} aria-label="ExtensionMesh home">
+      <img
+        src="https://raw.githubusercontent.com/Extension-Mesh/brand/main/logo/production/extensionmesh-logo-horizontal-reversed.svg"
+        alt="ExtensionMesh"
+        width="700"
+        height="96"
+      />
+    </a>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span></span><span></span>
+    </button>
+
+    <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+      {items.map((item) => (
+        <a
+          href={item.href}
+          aria-current={currentPath.includes(item.match) ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a class="nav-github" href="https://github.com/Extension-Mesh" rel="noreferrer">
+        GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".menu-button");
+  const navigation = document.querySelector<HTMLElement>(".site-nav");
+
+  button?.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    navigation?.classList.toggle("is-open", !expanded);
+  });
+</script>
