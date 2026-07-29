@@ -1,0 +1,74 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout
+  title="Core concepts"
+  description="The small set of roles used to describe ExtensionMesh without hiding system-specific requirements."
+>
+  <h2>The current model</h2>
+  <p>
+    ExtensionMesh separates the source of an extension from the code that
+    integrates that source into a particular system. The separation keeps
+    registry ownership independent and makes connector responsibilities
+    explicit.
+  </p>
+
+  <div class="concept-list">
+    <section>
+      <span>Registry</span>
+      <div>
+        <h3>An independent extension source</h3>
+        <p>
+          A registry makes extension metadata and releases available. It
+          controls its infrastructure, catalogue and publication process.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>Connector</span>
+      <div>
+        <h3>A system-specific integration boundary</h3>
+        <p>
+          A connector translates registry information into the discovery,
+          installation and update mechanisms required by a supported system.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>Extension</span>
+      <div>
+        <h3>A distributable software package</h3>
+        <p>
+          An extension is the package described by a registry and consumed by
+          a supported system through a connector.
+        </p>
+      </div>
+    </section>
+    <section>
+      <span>Supported system</span>
+      <div>
+        <h3>The environment that manages extensions</h3>
+        <p>
+          System behavior is not assumed to be universal. Each connector owns
+          the integration details required by its environment.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <h2>Why the boundary matters</h2>
+  <p>
+    A common model is useful only when it reflects real requirements.
+    ExtensionMesh therefore keeps system-specific behavior visible and delays
+    generalization until more than one implementation demonstrates the same
+    need.
+  </p>
+
+  <h2>Terminology is still evolving</h2>
+  <p>
+    These terms describe the current project direction. They are not yet a
+    frozen protocol or compatibility guarantee. Changes should be discussed
+    publicly and accompanied by concrete implementation evidence.
+  </p>
+</DocsLayout>
