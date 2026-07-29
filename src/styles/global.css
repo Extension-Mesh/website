@@ -1280,6 +1280,99 @@ h3 {
   font-size: 14px;
 }
 
+.status-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 18px 0 62px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.status-facts div {
+  padding: 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.status-facts span,
+.status-tag {
+  display: block;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-facts strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--navy);
+  font-family: "Geologica", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 28px 0 62px;
+}
+
+.capability-grid section {
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.status-tag.implemented {
+  color: #007f8c;
+}
+
+.capability-grid h3 {
+  margin: 42px 0 10px;
+  font-size: 21px;
+}
+
+.capability-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.validation-list {
+  margin: 28px 0 62px;
+  border-top: 1px solid var(--line);
+}
+
+.validation-list section {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.validation-list > section > span {
+  color: var(--teal);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+}
+
+.validation-list h3 {
+  margin: 0 0 7px;
+  font-size: 21px;
+}
+
+.validation-list p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .check-list {
   padding-left: 0 !important;
   list-style: none;
@@ -1669,12 +1762,18 @@ h3 {
   }
 
   .concept-list section,
-  .status-block {
+  .status-block,
+  .validation-list section {
     grid-template-columns: 1fr;
   }
 
   .status-block span {
     grid-row: auto;
+  }
+
+  .status-facts,
+  .capability-grid {
+    grid-template-columns: 1fr;
   }
 
   .docs-sidebar nav {
