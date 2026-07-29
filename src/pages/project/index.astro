@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Project — ExtensionMesh"
+  description="ExtensionMesh is an open, maintainer-led project shaped by practical extension distribution requirements."
+>
+  <section class="page-hero">
+    <div class="shell page-hero-grid">
+      <div>
+        <p class="eyebrow on-dark">The project</p>
+        <h1>Open by default.<br />Grounded in implementation.</h1>
+      </div>
+      <p>
+        ExtensionMesh is maintained in public. Technical direction, project
+        identity and contribution rules are documented so participation does
+        not depend on a private commercial relationship.
+      </p>
+    </div>
+  </section>
+
+  <section class="section project-section">
+    <div class="shell project-grid">
+      <div>
+        <p class="eyebrow">Principles</p>
+        <h2>A small set of constraints keeps the project honest.</h2>
+      </div>
+      <div class="project-principles">
+        <article>
+          <span>01</span>
+          <div>
+            <h3>Open development</h3>
+            <p>Source, documentation and meaningful decisions should be publicly accessible.</p>
+          </div>
+        </article>
+        <article>
+          <span>02</span>
+          <div>
+            <h3>Implementation-led design</h3>
+            <p>Real integrations drive shared conventions; hypothetical completeness does not.</p>
+          </div>
+        </article>
+        <article>
+          <span>03</span>
+          <div>
+            <h3>Independent participation</h3>
+            <p>Commercial use is welcome but does not grant special control, priority or endorsement.</p>
+          </div>
+        </article>
+        <article>
+          <span>04</span>
+          <div>
+            <h3>Explicit boundaries</h3>
+            <p>System-specific behavior belongs in connectors and is documented as such.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="repositories section">
+    <div class="shell">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Repositories</p>
+          <h2>The public project surface.</h2>
+        </div>
+        <p>Each repository has one clear responsibility and can evolve at the pace of its implementation.</p>
+      </div>
+      <div class="repo-list">
+        <a href="https://github.com/Extension-Mesh/shopware">
+          <span class="repo-name">shopware</span>
+          <span class="repo-role">First system connector</span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a href="https://github.com/Extension-Mesh/brand">
+          <span class="repo-name">brand</span>
+          <span class="repo-role">Identity, assets and design tokens</span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a href="https://github.com/Extension-Mesh/.github">
+          <span class="repo-name">.github</span>
+          <span class="repo-role">Governance and community defaults</span>
+          <i aria-hidden="true">↗</i>
+        </a>
+        <a href="https://github.com/Extension-Mesh/website">
+          <span class="repo-name">website</span>
+          <span class="repo-role">Public website and project documentation</span>
+          <i aria-hidden="true">↗</i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contribute-panel">
+    <div class="shell contribute-grid">
+      <div>
+        <p class="eyebrow">Contribute</p>
+        <h2>Bring a concrete use case.</h2>
+      </div>
+      <div>
+        <p>
+          Contributions are welcome across code, documentation, testing,
+          design and implementation feedback. Start in the repository closest
+          to the affected component.
+        </p>
+        <div class="link-row">
+          <a class="button dark" href="https://github.com/Extension-Mesh/.github/blob/main/CONTRIBUTING.md">
+            Contribution guide <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href={withBase("/docs/project-status/")}>
+            Current priorities <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
