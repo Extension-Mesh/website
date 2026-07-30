@@ -1165,6 +1165,23 @@ h3 {
   background: var(--soft);
 }
 
+.prose pre {
+  overflow-x: auto;
+  margin: 24px 0 30px;
+  padding: 20px 22px;
+  color: var(--warm-white);
+  background: var(--navy);
+  border-radius: var(--radius);
+}
+
+.prose pre code {
+  padding: 0;
+  color: inherit;
+  font-size: 13px;
+  line-height: 1.65;
+  background: transparent;
+}
+
 .notice {
   padding: 24px 26px;
   background: rgba(0, 175, 193, 0.08);

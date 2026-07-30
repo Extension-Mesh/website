@@ -9,11 +9,11 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
   description="A practical introduction to the current ExtensionMesh model, its components and its boundaries."
 >
   <div class="notice">
-    <strong>Current status</strong>
+    <strong>Public alpha available</strong>
     <p>
-      ExtensionMesh is in early development. This documentation describes the
-      project direction and the first implementation without claiming a stable,
-      system-independent specification.
+      ExtensionMesh 0.1.0-alpha.2 can now be installed and tested on Shopware
+      6.7. Start in an isolated environment and follow the role-specific
+      quickstarts below.
     </p>
   </div>
 
@@ -34,14 +34,14 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
   <h2>Start with your role</h2>
   <div class="doc-card-grid">
     <a href={withBase("/docs/for-creators/")}>
-      <span>Creator path</span>
-      <h3>I build extensions</h3>
-      <p>See how publishing, registries, connectors and updates fit into your release workflow.</p>
+      <span>Creator quickstart</span>
+      <h3>I publish extensions</h3>
+      <p>Build a validated release, publish registry metadata and prove the update path.</p>
     </a>
     <a href={withBase("/docs/for-users/")}>
-      <span>User path</span>
+      <span>User quickstart</span>
       <h3>I use extensions</h3>
-      <p>See how to choose sources, install extensions and understand the trust boundary.</p>
+      <p>Install the connector, add a source and verify discovery and installation.</p>
     </a>
   </div>
 
@@ -64,8 +64,8 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     </a>
     <a href={withBase("/docs/project-status/")}>
       <span>04</span>
-      <h3>Project status</h3>
-      <p>Review what exists today, current priorities and deliberate non-goals.</p>
+      <h3>Alpha status</h3>
+      <p>Work through the test checklist and review the boundaries before testing.</p>
     </a>
   </div>
 

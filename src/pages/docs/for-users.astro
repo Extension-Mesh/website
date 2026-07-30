@@ -2,126 +2,127 @@
 import DocsLayout from "../../layouts/DocsLayout.astro";
 const base = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const releaseUrl =
+  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.2";
+const downloadBase =
+  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.2";
 ---
 
 <DocsLayout
-  title="I use extensions"
-  description="A practical introduction for people who want to discover, install and update extensions from sources they trust."
-  section="For extension users"
+  title="Use extensions"
+  description="Install the current connector, add a registry and verify extension discovery in an isolated Shopware 6.7 installation."
+  section="Alpha quickstart · Extension users"
 >
   <div class="notice">
-    <strong>The short version</strong>
+    <strong>Public alpha · test environments only</strong>
     <p>
-      A connector lets your software use independent extension registries. You
-      choose the sources you trust; the connector handles how their extensions
-      appear, install and update in your system.
+      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.2</a>.
+      Interfaces and upgrade behavior can still change. Do not begin with a
+      production installation.
     </p>
   </div>
 
-  <h2>Why this exists</h2>
-  <p>
-    Independently distributed extensions often arrive as downloads, setup
-    instructions and update notices spread across different websites. That can
-    work, but it makes installation and maintenance unnecessarily manual.
-  </p>
-  <p>
-    ExtensionMesh aims to bring those sources into a supported system through a
-    visible connector. You keep the choice of source while gaining a more
-    consistent workflow.
-  </p>
-
-  <h2>Your path through ExtensionMesh</h2>
-  <div class="concept-list">
-    <section>
-      <span>01 · Connect</span>
-      <div>
-        <h3>Install the connector for your system</h3>
-        <p>
-          The connector provides the system-specific integration required to
-          use compatible registries.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>02 · Choose</span>
-      <div>
-        <h3>Add a registry you trust</h3>
-        <p>
-          A registry is an independent extension source. Its operator—not
-          ExtensionMesh—decides what it publishes and how access works.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>03 · Install</span>
-      <div>
-        <h3>Discover compatible extensions</h3>
-        <p>
-          The connector presents the registry information using the mechanisms
-          available in your software and handles the installation boundary.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>04 · Maintain</span>
-      <div>
-        <h3>Receive compatible updates</h3>
-        <p>
-          When the registry publishes a new compatible release, the connector
-          can make it available through the same system workflow.
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <h2>Trust remains your decision</h2>
-  <p>
-    Open distribution does not mean that every source or extension is
-    automatically reviewed. A registry remains responsible for what it
-    publishes, and system administrators remain responsible for choosing
-    sources and evaluating the code they install.
-  </p>
+  <h2>Before you start</h2>
   <ul class="check-list">
-    <li>Only add registries whose operator and policies you understand.</li>
-    <li>Review publisher, version, compatibility and access information.</li>
-    <li>Treat extensions as software that receives access to your system.</li>
-    <li>Follow security guidance from the registry and extension publisher.</li>
+    <li>An isolated Shopware 6.7 installation with Administration access.</li>
+    <li>PHP 8.2 or newer with JSON, Sodium and ZIP extensions.</li>
+    <li>A registry URL supplied by an extension publisher.</li>
+    <li>A current backup before testing installation or update behavior.</li>
   </ul>
 
-  <h2>What ExtensionMesh is not</h2>
+  <h2>1. Install the connector</h2>
   <p>
-    ExtensionMesh is not one required catalogue, a certification authority or
-    a promise that every extension works in every system. Connectors explicitly
-    define which systems and registry behavior they support.
+    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.2.zip`}>
+      ExtensionMesh-0.1.0-alpha.2.zip
+    </a> and the accompanying <a href={`${downloadBase}/SHA256SUMS`}>
+      SHA256SUMS
+    </a> file from the release.
   </p>
 
-  <h2>What works today</h2>
+  <p>Optionally verify the downloaded package on Linux:</p>
+
+  <pre><code>sha256sum -c SHA256SUMS</code></pre>
+
+  <ol>
+    <li>Open <strong>Extensions → My extensions</strong>.</li>
+    <li>Upload <code>ExtensionMesh-0.1.0-alpha.2.zip</code>.</li>
+    <li>Install and activate <strong>ExtensionMesh</strong>.</li>
+    <li>Reload the Administration if the new registry navigation is not visible immediately.</li>
+  </ol>
+
+  <h2>2. Add a registry</h2>
+  <ol>
+    <li>Open <strong>Extensions → My extensions → Registries</strong>.</li>
+    <li>
+      Paste either a compatible HTTPS registry endpoint or a public GitHub
+      repository URL supplied by the publisher.
+    </li>
+    <li>Add an access token only when that source requires one.</li>
+    <li>Save the source and select <strong>Refresh registries</strong>.</li>
+  </ol>
+
   <p>
-    The first connector targets Shopware and is still in early development.
-    Concrete installation and configuration instructions will live with that
-    connector as its user-facing workflow stabilizes.
+    To verify registry discovery without installing another extension, use the
+    registry document from the current ExtensionMesh release:
   </p>
 
-  <h2>What you can validate today</h2>
+  <pre><code>{downloadBase}/extension-mesh-registry.json</code></pre>
+
+  <p>
+    This self-registry should load and expose the current ExtensionMesh package.
+    It is only a discovery check; use a registry provided by an extension
+    publisher for an actual extension installation.
+  </p>
+
+  <h2>3. Install an extension</h2>
+  <ol>
+    <li>Return to the existing extension list.</li>
+    <li>Find the compatible extension supplied by the new registry.</li>
+    <li>Review its source, publisher, version and compatibility information.</li>
+    <li>Start installation through the existing plugin lifecycle.</li>
+    <li>Confirm that the extension is installed and can be activated normally.</li>
+  </ol>
+
+  <h2>4. Test an update</h2>
+  <p>
+    Ask the publisher for a registry containing a newer compatible version,
+    refresh registries, then run the update through the same extension screen.
+    Confirm both the installed version and the extension behavior afterwards.
+  </p>
+
+  <h2>What to record during the alpha</h2>
   <ul class="check-list">
-    <li>Configure persistent registry sources in a Shopware 6.7 test installation.</li>
-    <li>Use a compatible registry URL or GitHub repository URL as a source.</li>
-    <li>Discover compatible releases and hand installation or updates to the native plugin lifecycle.</li>
-    <li>Use credentials for private or paid sources without exposing them through the Administration API.</li>
+    <li>Shopware, PHP and ExtensionMesh versions.</li>
+    <li>Whether the source was an explicit registry URL or a GitHub repository URL.</li>
+    <li>The exact step that failed and the visible error message.</li>
+    <li>Relevant logs with credentials, customer data and private URLs removed.</li>
+    <li>Whether retrying, refreshing or reinstalling changed the result.</li>
   </ul>
+
+  <p>
+    Report reproducible problems in the
+    <a href="https://github.com/Extension-Mesh/shopware/issues/new">
+      connector issue tracker
+    </a>. For sensitive security findings, use GitHub's private vulnerability
+    reporting instead of a public issue.
+  </p>
+
+  <h2>Trust and current boundaries</h2>
+  <p>
+    A registry is an independent software source. ExtensionMesh validates
+    registry structure, compatibility information, checksums and plugin
+    archives, but it does not certify every publisher or review every extension.
+    Only add sources you intentionally trust.
+  </p>
 
   <div class="notice">
-    <strong>Use a test installation</strong>
+    <strong>Next step</strong>
     <p>
-      The current implementation is pre-stable. Evaluate it in an isolated
-      environment before considering production use, and review the source,
-      registry operator and extension packages as separate trust decisions.
+      Work through the <a href={withBase("/docs/project-status/")}>
+        alpha test checklist
+      </a>, or read the <a href={withBase("/docs/connectors/")}>
+        connector model
+      </a> to understand the system boundary.
     </p>
   </div>
-
-  <p>
-    Continue with <a href={withBase("/docs/connectors/")}>the connector model</a>,
-    or check the
-    <a href="https://github.com/Extension-Mesh/shopware">current implementation</a>.
-  </p>
 </DocsLayout>

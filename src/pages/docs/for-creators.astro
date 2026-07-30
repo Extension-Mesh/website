@@ -5,135 +5,160 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 ---
 
 <DocsLayout
-  title="I build extensions"
-  description="A practical introduction for developers who want to publish extensions through infrastructure they run or choose."
-  section="For extension creators"
+  title="Publish extensions"
+  description="Build a validated Shopware 6 plugin release, publish registry metadata with it and test the complete update path."
+  section="Alpha quickstart · Extension creators"
 >
   <div class="notice">
-    <strong>The short version</strong>
+    <strong>Start with one real plugin</strong>
     <p>
-      You publish an extension through an independent registry. A connector
-      makes that registry usable inside a supported system. Your registry stays
-      responsible for releases, packages and access rules.
+      The current alpha deliberately targets a conventional Shopware 6 plugin
+      repository. It does not claim a system-independent publishing
+      specification yet.
     </p>
   </div>
 
-  <h2>Why this exists</h2>
+  <h2>What the publishing workflow creates</h2>
   <p>
-    Building an extension is only part of shipping it. Independent
-    distribution also needs release metadata, package delivery, compatibility
-    information, installation and updates. Rebuilding that path for every
-    extension and every target system wastes effort.
+    A release contains the installable plugin ZIP plus the files a compatible
+    registry source needs:
   </p>
-  <p>
-    ExtensionMesh separates the source of an extension from the integration
-    with a particular system. That creates a reusable path without requiring
-    one mandatory catalogue or operator.
-  </p>
-
-  <h2>Your path through ExtensionMesh</h2>
-  <div class="concept-list">
-    <section>
-      <span>01 · Build</span>
-      <div>
-        <h3>Create and package your extension</h3>
-        <p>
-          You keep using the tools, release process and package format required
-          by the system you support.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>02 · Publish</span>
-      <div>
-        <h3>Release through a registry</h3>
-        <p>
-          The registry publishes the extension metadata, compatible versions
-          and package location needed by a connector.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>03 · Connect</span>
-      <div>
-        <h3>A system-specific connector reads the source</h3>
-        <p>
-          The connector translates registry information into the discovery,
-          installation and update mechanisms of the supported system.
-        </p>
-      </div>
-    </section>
-    <section>
-      <span>04 · Update</span>
-      <div>
-        <h3>Future releases use the same path</h3>
-        <p>
-          Publish another compatible release and the connector can make that
-          update available without a separate manual delivery workflow.
-        </p>
-      </div>
-    </section>
-  </div>
-
-  <h2>What remains under your control</h2>
   <ul class="check-list">
-    <li>Where packages and release metadata are hosted.</li>
-    <li>Which extensions and versions your registry publishes.</li>
-    <li>Whether packages are public, private, free or commercially licensed.</li>
-    <li>Authentication, entitlement and availability rules of your registry.</li>
-    <li>The systems and versions your extension supports.</li>
+    <li>The plugin ZIP built and validated with Shopware CLI.</li>
+    <li><code>SHA256SUMS</code> for independent package verification.</li>
+    <li><code>extension-mesh-release.json</code> for release history.</li>
+    <li><code>extension-mesh-registry.json</code> for direct discovery.</li>
   </ul>
 
-  <h2>What ExtensionMesh provides</h2>
-  <p>
-    ExtensionMesh defines the roles and integration boundaries needed to
-    connect independent sources with supported systems. It is not intended to
-    host every package, operate every registry or make publication decisions
-    for extension creators.
-  </p>
-
-  <h2>What works today</h2>
-  <p>
-    The project is validating this model through its first connector, which
-    targets Shopware. The shared registry conventions are still being extracted
-    from that implementation, so a stable system-independent publication
-    specification is not available yet.
-  </p>
-
-  <h2>What you can validate today</h2>
-  <ul class="check-list">
-    <li>
-      Publish a conventional plugin repository through a release workflow that
-      produces a validated ZIP, checksum and registry metadata.
-    </li>
-    <li>
-      Use a seller-operated installation to publish digital-product ZIPs and
-      provide entitled customers with registry access.
-    </li>
-    <li>
-      Connect a public or private GitHub repository and synchronize stable
-      release assets into a seller installation.
-    </li>
-    <li>
-      Run the separate buyer and seller environments locally to exercise the
-      complete publication, purchase, update and revocation flow.
-    </li>
+  <h2>Before you start</h2>
+  <p>Your repository should contain a plugin at its root with:</p>
+  <ul>
+    <li><code>type: shopware-platform-plugin</code> in <code>composer.json</code>.</li>
+    <li>A semantic <code>version</code> in <code>composer.json</code>.</li>
+    <li><code>require.shopware/core</code> and <code>require.php</code> constraints.</li>
+    <li><code>extra.shopware-plugin-class</code> pointing to the plugin class.</li>
+    <li>Built Administration assets or source files that Shopware CLI can build.</li>
   </ul>
+
+  <h2>1. Add the publishing workflow</h2>
+  <p>
+    Create <code>.github/workflows/publish-extension.yml</code>:
+  </p>
+
+  <pre><code>{`name: Publish extension
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Build and publish
+        uses: Extension-Mesh/shopware/.github/actions/publish-shopware@v0.1.0-alpha.2`}</code></pre>
+
+  <p>
+    The ExtensionMesh action is itself an alpha interface. Keep it pinned to the
+    reviewed alpha version and update that reference deliberately.
+  </p>
+
+  <h2>2. Publish the first release</h2>
+  <p>
+    Set the intended release version in <code>composer.json</code>. The Git tag
+    must contain the same version:
+  </p>
+
+  <pre><code>{`git tag v1.2.0
+git push origin v1.2.0`}</code></pre>
+
+  <p>
+    The workflow creates the GitHub Release. Do not create that release
+    manually first. When the workflow completes, verify that all four release
+    assets are present and that the ZIP contains the expected plugin root.
+  </p>
+
+  <h2>3. Connect a test installation</h2>
+  <p>
+    For a normal non-prerelease GitHub Release, a Shopware 6.7 test installation
+    can add the repository URL directly:
+  </p>
+
+  <pre><code>https://github.com/owner/plugin-repository</code></pre>
+
+  <p>
+    The connector resolves the repository to the
+    <code>extension-mesh-registry.json</code> asset of its latest
+    non-prerelease release.
+  </p>
 
   <div class="notice">
-    <strong>Pre-stable implementation</strong>
+    <strong>Testing a prerelease</strong>
     <p>
-      These workflows are available for evaluation and contribution. Interfaces,
-      packaging rules and setup steps may still change before the first stable
-      release.
+      GitHub does not expose prereleases through its <code>releases/latest</code>
+      URL. Add the exact URL of that release's
+      <code>extension-mesh-registry.json</code> asset instead.
+    </p>
+  </div>
+
+  <h2>4. Prove the update path</h2>
+  <ol>
+    <li>Install the first release in the isolated test installation.</li>
+    <li>Change the plugin version and make a small, observable plugin change.</li>
+    <li>Create and push the matching second version tag.</li>
+    <li>Refresh registries in the target installation.</li>
+    <li>Run the update and verify the new version and behavior.</li>
+  </ol>
+
+  <p>
+    A successful first installation is not enough for the alpha. The second
+    release proves that packaging, release history, compatibility selection and
+    the platform update lifecycle agree.
+  </p>
+
+  <h2>Creator alpha checklist</h2>
+  <ul class="check-list">
+    <li>The workflow builds assets before packaging the release.</li>
+    <li>The generated ZIP passes Shopware CLI validation.</li>
+    <li>The checksum matches the public ZIP.</li>
+    <li>The repository or exact registry URL loads without manual metadata edits.</li>
+    <li>Incompatible Shopware or PHP versions are not offered.</li>
+    <li>A second release appears as an update and installs successfully.</li>
+    <li>Release failures leave no misleading published version behind.</li>
+  </ul>
+
+  <p>
+    The canonical workflow is also documented in
+    <a href="https://github.com/Extension-Mesh/shopware/blob/main/docs/github-publishing.md">
+      the connector repository
+    </a>. Report reproducible publishing problems in its
+    <a href="https://github.com/Extension-Mesh/shopware/issues/new">
+      issue tracker
+    </a>.
+  </p>
+
+  <div class="notice">
+    <strong>Current scope</strong>
+    <p>
+      Start with the proven Shopware 6.7 path. Shared conventions will be
+      extracted from working implementations instead of promising compatibility
+      with systems that do not have a maintained connector.
     </p>
   </div>
 
   <p>
-    Continue with <a href={withBase("/docs/registries/")}>the registry model</a>,
-    read the
-    <a href="https://github.com/Extension-Mesh/shopware/blob/main/docs/github-publishing.md">GitHub publishing notes</a>,
-    or follow implementation progress in
-    <a href="https://github.com/Extension-Mesh/shopware">Extension-Mesh/shopware</a>.
+    Continue with the <a href={withBase("/docs/registries/")}>registry model</a>
+    or the <a href={withBase("/docs/project-status/")}>alpha test checklist</a>.
   </p>
 </DocsLayout>
