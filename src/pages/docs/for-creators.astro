@@ -67,7 +67,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build and publish
-        uses: Extension-Mesh/shopware/.github/actions/publish-shopware@v0.1.0-alpha.2`}</code></pre>
+        uses: Extension-Mesh/shopware/.github/actions/publish-shopware@v0.1.0-alpha.3`}</code></pre>
 
   <p>
     The ExtensionMesh action is itself an alpha interface. Keep it pinned to the
@@ -84,33 +84,31 @@ jobs:
 git push origin v1.2.0`}</code></pre>
 
   <p>
-    The workflow creates the GitHub Release. Do not create that release
-    manually first. When the workflow completes, verify that all four release
-    assets are present and that the ZIP contains the expected plugin root.
+    The workflow creates the GitHub Release and updates the generated
+    <code>extension-mesh-registry</code> branch. Do not create that release or
+    edit the generated branch manually. When the workflow completes, verify
+    that all four release assets are present and that the ZIP contains the
+    expected plugin root.
   </p>
 
   <h2>3. Connect a test installation</h2>
   <p>
-    For a normal non-prerelease GitHub Release, a Shopware 6.7 test installation
-    can add the repository URL directly:
+    A Shopware 6.7 test installation can add the repository URL directly:
   </p>
 
   <pre><code>https://github.com/owner/plugin-repository</code></pre>
 
   <p>
-    The connector resolves the repository to the
-    <code>extension-mesh-registry.json</code> asset of its latest
-    non-prerelease release.
+    The connector resolves the repository to the generated registry channel:
   </p>
 
-  <div class="notice">
-    <strong>Testing a prerelease</strong>
-    <p>
-      GitHub does not expose prereleases through its <code>releases/latest</code>
-      URL. Add the exact URL of that release's
-      <code>extension-mesh-registry.json</code> asset instead.
-    </p>
-  </div>
+  <pre><code>https://raw.githubusercontent.com/owner/plugin-repository/extension-mesh-registry/extension-mesh-registry.json</code></pre>
+
+  <p>
+    Every successful release updates this document, including prereleases.
+    Consumers therefore keep the repository URL while published versions
+    change.
+  </p>
 
   <h2>4. Prove the update path</h2>
   <ol>

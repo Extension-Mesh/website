@@ -3,9 +3,9 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 const base = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const releaseUrl =
-  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.2";
+  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.3";
 const downloadBase =
-  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.2";
+  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.3";
 ---
 
 <DocsLayout
@@ -16,7 +16,7 @@ const downloadBase =
   <div class="notice">
     <strong>Public alpha · test environments only</strong>
     <p>
-      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.2</a>.
+      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.3</a>.
       Interfaces and upgrade behavior can still change. Do not begin with a
       production installation.
     </p>
@@ -32,8 +32,8 @@ const downloadBase =
 
   <h2>1. Install the connector</h2>
   <p>
-    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.2.zip`}>
-      ExtensionMesh-0.1.0-alpha.2.zip
+    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.3.zip`}>
+      ExtensionMesh-0.1.0-alpha.3.zip
     </a> and the accompanying <a href={`${downloadBase}/SHA256SUMS`}>
       SHA256SUMS
     </a> file from the release.
@@ -45,7 +45,7 @@ const downloadBase =
 
   <ol>
     <li>Open <strong>Extensions → My extensions</strong>.</li>
-    <li>Upload <code>ExtensionMesh-0.1.0-alpha.2.zip</code>.</li>
+    <li>Upload <code>ExtensionMesh-0.1.0-alpha.3.zip</code>.</li>
     <li>Install and activate <strong>ExtensionMesh</strong>.</li>
     <li>Reload the Administration if the new registry navigation is not visible immediately.</li>
   </ol>
@@ -63,15 +63,17 @@ const downloadBase =
 
   <p>
     To verify registry discovery without installing another extension, use the
-    registry document from the current ExtensionMesh release:
+    ExtensionMesh repository itself:
   </p>
 
-  <pre><code>{downloadBase}/extension-mesh-registry.json</code></pre>
+  <pre><code>https://github.com/Extension-Mesh/shopware</code></pre>
 
   <p>
-    This self-registry should load and expose the current ExtensionMesh package.
-    It is only a discovery check; use a registry provided by an extension
-    publisher for an actual extension installation.
+    The connector resolves this stable repository address to its generated
+    registry channel. It should expose the current ExtensionMesh package
+    without a version-specific registry URL. This is only a discovery check;
+    use a registry provided by an extension publisher for an actual extension
+    installation.
   </p>
 
   <h2>3. Install an extension</h2>
