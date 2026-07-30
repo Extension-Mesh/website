@@ -49,39 +49,36 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
+    paths:
+      - composer.json
+      - .github/workflows/publish-extension.yml
 
-permissions:
-  contents: write
-  id-token: write
-  attestations: write
+permissions: {}
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out source
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          fetch-depth: 0
-
-      - name: Build and publish
-        uses: Extension-Mesh/shopware/.github/actions/publish-shopware@v0.1.0-alpha.3`}</code></pre>
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    uses: Extension-Mesh/shopware-publisher/.github/workflows/publish.yml@v0.1.0-alpha.1`}</code></pre>
 
   <p>
-    The ExtensionMesh action is itself an alpha interface. Keep it pinned to the
-    reviewed alpha version and update that reference deliberately.
+    The publisher is maintained separately in
+    <a href="https://github.com/Extension-Mesh/shopware-publisher">
+      Extension-Mesh/shopware-publisher
+    </a>. Its interface is still an alpha. Keep it pinned to the reviewed alpha
+    reference and update that reference deliberately.
   </p>
 
   <h2>2. Publish the first release</h2>
   <p>
-    Set the intended release version in <code>composer.json</code>. The Git tag
-    must contain the same version:
+    Set a new release version in <code>composer.json</code> and push the change
+    to <code>main</code>. The workflow creates the matching
+    <code>v&lt;version&gt;</code> tag automatically.
   </p>
-
-  <pre><code>{`git tag v1.2.0
-git push origin v1.2.0`}</code></pre>
 
   <p>
     The workflow creates the GitHub Release and updates the generated
@@ -89,6 +86,12 @@ git push origin v1.2.0`}</code></pre>
     edit the generated branch manually. When the workflow completes, verify
     that all four release assets are present and that the ZIP contains the
     expected plugin root.
+  </p>
+
+  <p>
+    When adding the workflow to a repository with existing releases, publish it
+    together with a new plugin version. Existing releases without ExtensionMesh
+    metadata are not modified.
   </p>
 
   <h2>3. Connect a test installation</h2>
@@ -114,7 +117,7 @@ git push origin v1.2.0`}</code></pre>
   <ol>
     <li>Install the first release in the isolated test installation.</li>
     <li>Change the plugin version and make a small, observable plugin change.</li>
-    <li>Create and push the matching second version tag.</li>
+    <li>Push the second version through <code>composer.json</code>.</li>
     <li>Refresh registries in the target installation.</li>
     <li>Run the update and verify the new version and behavior.</li>
   </ol>
@@ -137,11 +140,11 @@ git push origin v1.2.0`}</code></pre>
   </ul>
 
   <p>
-    The canonical workflow is also documented in
-    <a href="https://github.com/Extension-Mesh/shopware/blob/main/docs/github-publishing.md">
-      the connector repository
+    The canonical workflow is documented in
+    <a href="https://github.com/Extension-Mesh/shopware-publisher">
+      the publisher repository
     </a>. Report reproducible publishing problems in its
-    <a href="https://github.com/Extension-Mesh/shopware/issues/new">
+    <a href="https://github.com/Extension-Mesh/shopware-publisher/issues/new">
       issue tracker
     </a>.
   </p>

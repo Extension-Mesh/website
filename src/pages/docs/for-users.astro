@@ -3,9 +3,9 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 const base = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const releaseUrl =
-  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.3";
+  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.4";
 const downloadBase =
-  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.3";
+  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.4";
 ---
 
 <DocsLayout
@@ -16,7 +16,7 @@ const downloadBase =
   <div class="notice">
     <strong>Public alpha · test environments only</strong>
     <p>
-      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.3</a>.
+      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.4</a>.
       Interfaces and upgrade behavior can still change. Do not begin with a
       production installation.
     </p>
@@ -32,8 +32,8 @@ const downloadBase =
 
   <h2>1. Install the connector</h2>
   <p>
-    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.3.zip`}>
-      ExtensionMesh-0.1.0-alpha.3.zip
+    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.4.zip`}>
+      ExtensionMesh-0.1.0-alpha.4.zip
     </a> and the accompanying <a href={`${downloadBase}/SHA256SUMS`}>
       SHA256SUMS
     </a> file from the release.
@@ -45,7 +45,7 @@ const downloadBase =
 
   <ol>
     <li>Open <strong>Extensions → My extensions</strong>.</li>
-    <li>Upload <code>ExtensionMesh-0.1.0-alpha.3.zip</code>.</li>
+    <li>Upload <code>ExtensionMesh-0.1.0-alpha.4.zip</code>.</li>
     <li>Install and activate <strong>ExtensionMesh</strong>.</li>
     <li>Reload the Administration if the new registry navigation is not visible immediately.</li>
   </ol>
