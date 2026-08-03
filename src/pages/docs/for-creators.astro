@@ -6,19 +6,19 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 
 <DocsLayout
   title="Publish extensions"
-  description="Build a validated Shopware 6 plugin release, publish registry metadata with it and test the complete update path."
-  section="Alpha quickstart · Extension creators"
+  description="Add ExtensionMesh metadata to a Shopware 6 plugin release, whether you need a complete workflow or already build your own releases."
+  section="Beta quickstart · Extension creators"
 >
   <div class="notice">
-    <strong>Start with one real plugin</strong>
+    <strong>Keep the release flow you need</strong>
     <p>
-      The current alpha deliberately targets a conventional Shopware 6 plugin
-      repository. It does not claim a system-independent publishing
-      specification yet.
+      Use the complete publisher workflow for a conventional repository, add
+      the publisher to an existing release job, or pass it a ZIP your own flow
+      already built and verified.
     </p>
   </div>
 
-  <h2>What the publishing workflow creates</h2>
+  <h2>What a compatible release includes</h2>
   <p>
     A release contains the installable plugin ZIP plus the files a compatible
     registry source needs:
@@ -40,9 +40,13 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     <li>Built Administration assets or source files that Shopware CLI can build.</li>
   </ul>
 
-  <h2>1. Add the publishing workflow</h2>
+  <h2>Choose a publishing path</h2>
+
+  <h3>Path A: use the complete release workflow</h3>
   <p>
-    Create <code>.github/workflows/publish-extension.yml</code>:
+    Choose this when changing <code>composer.json</code> should build, validate
+    and publish the plugin without any other release orchestration. Create
+    <code>.github/workflows/publish-extension.yml</code>:
   </p>
 
   <pre><code>{`name: Publish extension
@@ -69,11 +73,64 @@ jobs:
     The publisher is maintained separately in
     <a href="https://github.com/Extension-Mesh/shopware-publisher">
       Extension-Mesh/shopware-publisher
-    </a>. Its interface is still an alpha. Keep it pinned to the reviewed alpha
-    reference and update that reference deliberately.
+    </a>. It is versioned independently from the Shopware connector. Keep it
+    pinned to a reviewed reference and update that reference deliberately.
   </p>
 
-  <h2>2. Publish the first release</h2>
+  <h3>Path B: add it to an existing release job</h3>
+  <p>
+    Keep your existing triggers, tests and versioning. Replace only the step
+    that creates the GitHub Release with the composite publisher action:
+  </p>
+
+  <pre><code>{`permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+steps:
+  - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    with:
+      fetch-depth: 0
+
+  - name: Publish with ExtensionMesh metadata
+    uses: Extension-Mesh/shopware-publisher@v0.1.0-alpha.1
+    env:
+      EXTENSION_MESH_TAG: \${{ github.ref_name }}`}</code></pre>
+
+  <p>
+    The action derives the repository information from <code>composer.json</code>,
+    builds and validates the plugin, creates the release and updates the stable
+    registry channel. Run it for a semantic version tag such as
+    <code>v1.2.3</code>. Do not create the same GitHub Release in an earlier
+    step—the publisher deliberately refuses to modify an existing release that
+    has no ExtensionMesh metadata.
+  </p>
+
+  <h3>Path C: publish a ZIP you already verified</h3>
+  <p>
+    If an earlier job already produced the installable archive, download that
+    artifact and pass its path to the action. The publisher validates its
+    packaged <code>composer.json</code>, adds the required release information
+    and publishes the supplied ZIP byte-for-byte:
+  </p>
+
+  <pre><code>{`- name: Publish the verified archive
+  uses: Extension-Mesh/shopware-publisher@1355c834bb904a01205ff46cc16a81461c3ce4b6
+  with:
+    source-archive: \${{ runner.temp }}/verified/MyPlugin.zip
+  env:
+    EXTENSION_MESH_TAG: \${{ github.ref_name }}`}</code></pre>
+
+  <p>
+    The archive must contain
+    <code>&lt;TechnicalName&gt;/composer.json</code>, and that Composer version must
+    match the tag. This is the smallest integration for repositories that want
+    to keep their existing build and verification flow while adding the
+    checksum, manifests and stable repository channel ExtensionMesh needs.
+  </p>
+
+  <h2>Publish a new version</h2>
   <p>
     Set a new release version in <code>composer.json</code> and push the change
     to <code>main</code>. The workflow creates the matching
@@ -94,7 +151,7 @@ jobs:
     metadata are not modified.
   </p>
 
-  <h2>3. Connect a test installation</h2>
+  <h2>Connect an installation</h2>
   <p>
     A Shopware 6.7 test installation can add the repository URL directly:
   </p>
@@ -113,7 +170,7 @@ jobs:
     change.
   </p>
 
-  <h2>4. Prove the update path</h2>
+  <h2>Prove the update path</h2>
   <ol>
     <li>Install the first release in the isolated test installation.</li>
     <li>Change the plugin version and make a small, observable plugin change.</li>
@@ -123,12 +180,12 @@ jobs:
   </ol>
 
   <p>
-    A successful first installation is not enough for the alpha. The second
+    A successful first installation is not enough. The second
     release proves that packaging, release history, compatibility selection and
     the platform update lifecycle agree.
   </p>
 
-  <h2>Creator alpha checklist</h2>
+  <h2>Creator beta checklist</h2>
   <ul class="check-list">
     <li>The workflow builds assets before packaging the release.</li>
     <li>The generated ZIP passes Shopware CLI validation.</li>
@@ -160,6 +217,6 @@ jobs:
 
   <p>
     Continue with the <a href={withBase("/docs/registries/")}>registry model</a>
-    or the <a href={withBase("/docs/project-status/")}>alpha test checklist</a>.
+    or the <a href={withBase("/docs/project-status/")}>beta validation checklist</a>.
   </p>
 </DocsLayout>

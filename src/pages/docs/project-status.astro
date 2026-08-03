@@ -5,15 +5,15 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 ---
 
 <DocsLayout
-  title="Alpha status"
-  description="What can be tested today, which boundaries still apply and what evidence is needed before a beta."
+  title="Beta status"
+  description="What is ready for evaluation today, which boundaries still apply and what evidence is needed before a stable release."
 >
   <div class="status-block">
     <span>Current phase</span>
-    <strong>Public alpha</strong>
+    <strong>Public beta</strong>
     <p>
-      ExtensionMesh 0.1.0-alpha.4 is an installable, reproducibly built release
-      for structured testing and early integration work.
+      ExtensionMesh 0.1.0-beta.1 is an installable, reproducibly built release
+      for broader evaluation and integration work.
     </p>
   </div>
 
@@ -24,22 +24,22 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     </div>
     <div>
       <span>Current release</span>
-      <strong>0.1.0-alpha.4</strong>
+      <strong>0.1.0-beta.1</strong>
     </div>
     <div>
       <span>Status checked</span>
-      <strong>30 July 2026</strong>
+      <strong>3 August 2026</strong>
     </div>
   </div>
 
   <p>
     Download the current package and release metadata from
-    <a href="https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.4">
-      the alpha.4 release
+    <a href="https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-beta.1">
+      the beta.1 release
     </a>. Use an isolated installation and keep a backup before testing.
   </p>
 
-  <h2>Ready for alpha testing</h2>
+  <h2>Ready for beta evaluation</h2>
   <div class="capability-grid">
     <section>
       <span class="status-tag implemented">Test now</span>
@@ -91,7 +91,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     </section>
   </div>
 
-  <h2>Alpha test checklist</h2>
+  <h2>Beta validation checklist</h2>
   <div class="validation-list">
     <section>
       <span>01</span>
@@ -155,17 +155,17 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     </section>
   </div>
 
-  <h2>Known alpha boundaries</h2>
+  <h2>Known beta boundaries</h2>
   <ul>
     <li>The maintained implementation currently targets Shopware 6.7.</li>
-    <li>Interfaces, generated metadata and upgrade behavior may still change.</li>
+    <li>Interfaces, generated metadata and upgrade behavior may still change during the beta.</li>
     <li>GitHub repository URLs resolve the generated registry channel.</li>
     <li>Background or unattended extension installation is not provided.</li>
     <li>Registry validation is not a certification of publishers or extension code.</li>
     <li>No compatibility is promised for systems without a concrete maintained connector.</li>
   </ul>
 
-  <h2>Evidence required before beta</h2>
+  <h2>Evidence required before a stable release</h2>
   <ul class="check-list">
     <li>Repeated clean installations and connector upgrades across supported 6.7 releases.</li>
     <li>A complete external plugin publication and update performed from the public guide.</li>

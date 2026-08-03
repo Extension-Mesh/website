@@ -3,22 +3,22 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 const base = import.meta.env.BASE_URL;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const releaseUrl =
-  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-alpha.4";
+  "https://github.com/Extension-Mesh/shopware/releases/tag/v0.1.0-beta.1";
 const downloadBase =
-  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-alpha.4";
+  "https://github.com/Extension-Mesh/shopware/releases/download/v0.1.0-beta.1";
 ---
 
 <DocsLayout
   title="Use extensions"
   description="Install the current connector, add a registry and verify extension discovery in an isolated Shopware 6.7 installation."
-  section="Alpha quickstart · Extension users"
+  section="Beta quickstart · Extension users"
 >
   <div class="notice">
-    <strong>Public alpha · test environments only</strong>
+    <strong>Public beta · evaluate before production use</strong>
     <p>
-      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-alpha.4</a>.
-      Interfaces and upgrade behavior can still change. Do not begin with a
-      production installation.
+      This guide uses ExtensionMesh <a href={releaseUrl}>0.1.0-beta.1</a>.
+      The supported path is ready for broader evaluation, but interfaces and
+      upgrade behavior can still change during the beta.
     </p>
   </div>
 
@@ -32,8 +32,8 @@ const downloadBase =
 
   <h2>1. Install the connector</h2>
   <p>
-    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-alpha.4.zip`}>
-      ExtensionMesh-0.1.0-alpha.4.zip
+    Download <a href={`${downloadBase}/ExtensionMesh-0.1.0-beta.1.zip`}>
+      ExtensionMesh-0.1.0-beta.1.zip
     </a> and the accompanying <a href={`${downloadBase}/SHA256SUMS`}>
       SHA256SUMS
     </a> file from the release.
@@ -45,7 +45,7 @@ const downloadBase =
 
   <ol>
     <li>Open <strong>Extensions → My extensions</strong>.</li>
-    <li>Upload <code>ExtensionMesh-0.1.0-alpha.4.zip</code>.</li>
+    <li>Upload <code>ExtensionMesh-0.1.0-beta.1.zip</code>.</li>
     <li>Install and activate <strong>ExtensionMesh</strong>.</li>
     <li>Reload the Administration if the new registry navigation is not visible immediately.</li>
   </ol>
@@ -92,7 +92,7 @@ const downloadBase =
     Confirm both the installed version and the extension behavior afterwards.
   </p>
 
-  <h2>What to record during the alpha</h2>
+  <h2>What to record during the beta</h2>
   <ul class="check-list">
     <li>Shopware, PHP and ExtensionMesh versions.</li>
     <li>Whether the source was an explicit registry URL or a GitHub repository URL.</li>
@@ -121,7 +121,7 @@ const downloadBase =
     <strong>Next step</strong>
     <p>
       Work through the <a href={withBase("/docs/project-status/")}>
-        alpha test checklist
+        beta validation checklist
       </a>, or read the <a href={withBase("/docs/connectors/")}>
         connector model
       </a> to understand the system boundary.
